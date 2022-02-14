@@ -18,15 +18,29 @@
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Created at</th>
+                    <th>Status</th>
+                    <th>Modify User</th>
                 </tr>
             </thead>
-            <tbody id="myTable"></tbody>
+            <tbody class="myTable"></tbody>
         </table>
     </div>
     <div class="container">
         <div id="wrapper-pagination"></div>
+        <div id="wrapper-addUser">
+            <form class="addUserForm">
+                <div class="formGroup">
+                    <label>First Name</label>
+                    <input type="text" id="firstNameValue">
+                </div>
+                <div class="formGroup">
+                    <label>Last Name</label>
+                    <input type="text" id="lastNameValue">
+                </div>
+                <button type="submit">Add User</button>
+            </form>
+        </div>
     </div>
-
     <script src="dataHandler.js">
     </script>
 </body>

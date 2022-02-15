@@ -1,103 +1,61 @@
-let dataurl = 'https://assessment-users-backend.herokuapp.com/users.json';
-let userData = ""
+const userList = document.querySelector('.myTable')
+const url = 'https://assessment-users-backend.herokuapp.com/users.json'
+let output = ''
 const addUserForm = document.querySelector('.addUserForm')
 const firstNameValue = document.getElementById('firstNameValue')
 const lastNameValue = document.getElementById('lastNameValue')
 const btnSubmit = document.querySelector('.btn');
-const userList = document.querySelector('.myTable')
-
-//get request
-async function getData(dataurl) {
-    let response = await fetch(dataurl);
-    let data = await response.json();
-    return data;
-}
-
-const table_element = document.getElementById('myTable');
 const pagination_element = document.getElementById('wrapper-pagination');
 var current_page = 1;
 var rows = 10;
 
-async function buildTable(wrapper, rows_per_page, page) {
-    let userData = await getData(dataurl); //fetch all data
-    //clear table
-    wrapper.innerHTML = "";
-    page--;
 
-    //slice data
-    var trimStart = rows_per_page * page;
-    var trimEnd = trimStart + rows_per_page
-    var trimmedData = userData.slice(trimStart, trimEnd);
 
-    //loop through
-    for (let i = 0; i < trimmedData.length; i++) {
-        var userRow = `<tr data-id=${trimmedData[i].id}>
-        <td class="fName">${trimmedData[i].first_name}</td>
-        <td class="lName">${trimmedData[i].last_name}</td>
-        <td class="created">${trimmedData[i].created_at}</td>
-        <td class="status"><a href="#" id="changeStatus">${trimmedData[i].status}</a></td>
-        <td data-id=${trimmedData[i].id}>
+const renderUsers = (users) => {
+    users.forEach(user => {
+        output += `<tr data-id=${user.id}>
+        <td class="fName">${user.first_name}</td>
+        <td class="lName">${user.last_name}</td>
+        <td class="created">${user.created_at}</td>
+        <td class="status"><a href="#" id="changeStatus">${user.status}</a></td>
+        <td data-id=${user.id}>
             <a href="#" id="editPost">Edit</a>
             <a href="#" id="deletePost">Delete</a>        
         </td>
-                            </tr>`;
-
-        wrapper.innerHTML += userRow
-    }
-}
-
-async function pagination(wrapper, rows_per_page) {
-    let userData = await getData(dataurl); //fetch all data
-    wrapper.innerHTML = "";
-    let pageCount = Math.ceil(userData.length / rows_per_page);
-
-    for (let i = 1; i < pageCount + 1; i++) {
-        let btn = paginationButton(i);
-
-        wrapper.appendChild(btn);
-    }
-}
-
-function paginationButton(page) {
-    let button = document.createElement('button');
-    button.innerText = page;
-
-    if (current_page == page) button.classList.add('active');
-
-    button.addEventListener('click', function() {
-        current_page = page;
-        buildTable(table_element, rows, current_page);
+                   </tr>`;
     });
-
-    return button;
+    userList.innerHTML = output;
 
 }
 
-buildTable(table_element, rows, current_page);
-pagination(pagination_element, rows);
-//Add new user
-//Method: POST
-addUserForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+// function pagination(users, page, rows) {
+//     var trimStart = (page - 1) * rows
+//     var trimEnd = trimStart + rows
+//     var trimmedData = users.slice(trimStart, trimEnd);
+//     var pages = Math.ceil(users.length / rows)
+//     renderUsers(trimmedData);
+//     paginationButtons(pages);
 
-    fetch(dataurl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                first_name: firstNameValue.value,
-                last_name: lastNameValue.value,
-                status: "active"
-            })
-        })
-        .then(response => response.json())
-        .then(data => { return data })
-        .catch(err => console.log(err))
-        //reset form
-    firstNameValue.value = '';
-    lastNameValue.value = '';
-});
+// }
+
+// function paginationButtons(pages) {
+//     pagination_element.innerHTML = ''
+//     for (var page = 1; page <= pages; page++) {
+//         pagination_element.innerHTML += `<button value=${page} class="btnPage">${page}</button>`
+//     }
+//     const pagesbtn = document.querySelector('.btnPage');
+//     pagesbtn.addEventListener('click', function() {
+//         userList.innerHTML = ""
+//         current_page = page;
+//     })
+
+// }
+
+//Load user data
+//Method: GET
+fetch(url)
+    .then(res => res.json())
+    .then(data => renderUsers(data))
 
 userList.addEventListener('click', (e) => {
     e.preventDefault();
@@ -191,4 +149,33 @@ userList.addEventListener('click', (e) => {
 
 
     }
+});
+
+//Add new user
+//Method: POST
+addUserForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                first_name: firstNameValue.value,
+                last_name: lastNameValue.value,
+                status: "active"
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const dataArray = [];
+            dataArray.push(data);
+            renderUsers(dataArray);
+        })
+        .catch(err => console.log(err))
+        //reset form
+    firstNameValue.value = '';
+    lastNameValue.value = '';
+
 });

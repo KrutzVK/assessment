@@ -61,6 +61,7 @@ async function pagination(wrapper, rows_per_page) {
 function paginationButton(page) {
     let button = document.createElement('button');
     button.innerText = page;
+    button.setAttribute("class", "pg-btn");
 
     if (current_page == page) button.classList.add('active');
 

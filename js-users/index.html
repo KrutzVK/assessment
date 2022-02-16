@@ -7,12 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Natives Users API</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
 
 <body>
     <h1>Users</h1>
-    <div class="container">
-        <table>
+    <div class="table-wrapper">
+        <table class="fl-table">
             <thead>
                 <tr>
                     <th>First name</th>
@@ -25,17 +26,16 @@
             <tbody id="myTable" class="myTable"></tbody>
         </table>
     </div>
-    <div class="container">
-        <div id="wrapper-pagination"></div>
+    <div class="footer">
+        <div id="wrapper-pagination" class="pagination"></div>
         <div id="wrapper-addUser">
+
             <form class="addUserForm">
                 <div class="formGroup">
-                    <label>First Name</label>
-                    <input type="text" id="firstNameValue" class>
+                    <input type="text" id="firstNameValue" class="name-input" placeholder="First name">
                 </div>
                 <div class="formGroup">
-                    <label>Last Name</label>
-                    <input type="text" id="lastNameValue">
+                    <input type="text" id="lastNameValue" class="name-input" placeholder="Last name">
                 </div>
                 <button class="btn" type="submit">Add User</button>
             </form>

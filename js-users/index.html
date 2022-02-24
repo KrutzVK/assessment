@@ -11,9 +11,10 @@
 </head>
 
 <body>
-    <h1>Users</h1>
-    <div class="table-wrapper">
-        <table class="fl-table">
+
+    <div class="header_fixed">
+        <h1>Users</h1>
+        <table>
             <thead>
                 <tr>
                     <th>First name</th>
@@ -25,22 +26,23 @@
             </thead>
             <tbody id="myTable" class="myTable"></tbody>
         </table>
-    </div>
-    <div class="footer">
         <div id="wrapper-pagination" class="pagination"></div>
-        <div id="wrapper-addUser">
-
-            <form class="addUserForm">
-                <div class="formGroup">
-                    <input type="text" id="firstNameValue" class="name-input" placeholder="First name">
-                </div>
-                <div class="formGroup">
-                    <input type="text" id="lastNameValue" class="name-input" placeholder="Last name">
-                </div>
-                <button class="btn" type="submit">Add User</button>
-            </form>
+        <div class="pop-upForm">
+            <button onclick="openForm()">Add user</button>
         </div>
     </div>
+    <div class="form-popup" id="myForm">
+        <form class="addUserForm">
+            <div class="formGroup">
+                <input type="text" id="firstNameValue" class="name-input" placeholder="First name">
+            </div>
+            <div class="formGroup">
+                <input type="text" id="lastNameValue" class="name-input" placeholder="Last name">
+            </div>
+            <button class="btn" type="submit">Add User</button>
+        </form>
+    </div>
+
     <script src="dataHandler.js ">
     </script>
 </body>

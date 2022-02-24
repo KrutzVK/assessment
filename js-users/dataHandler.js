@@ -53,17 +53,13 @@ async function pagination(wrapper, rows_per_page) {
 
     for (let i = 1; i < pageCount + 1; i++) {
         let btn = paginationButton(i);
-
         wrapper.appendChild(btn);
     }
 }
 
 function paginationButton(page) {
-    let button = document.createElement('button');
+    let button = document.createElement('a');
     button.innerText = page;
-    button.setAttribute("class", "pg-btn");
-
-    if (current_page == page) button.classList.add('active');
 
     button.addEventListener('click', function() {
         current_page = page;
@@ -126,8 +122,9 @@ userList.addEventListener('click', (e) => {
     }
 
     //Edit user
-    //Method: PATCH
+    //Method: PUT
     if (editPressed) {
+        document.getElementById("myForm").style.display = "block";
         const parent = e.target.parentNode.parentNode;
         let firstName = parent.querySelector('.fName').textContent;
         let lastName = parent.querySelector('.lName').textContent;
@@ -193,3 +190,7 @@ userList.addEventListener('click', (e) => {
 
     }
 });
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}

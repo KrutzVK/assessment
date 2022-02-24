@@ -1,67 +1,19 @@
 [{
         "id": "1",
-        "text": "updated",
+        "text": "TestPOST",
         "priority": 3,
         "done": false
     },
     {
         "id": "2",
-        "text": "updated",
+        "text": "TestPOST",
         "priority": 3,
         "done": false
     },
     {
         "id": "3",
-        "text": "TaskEdit",
-        "priority": 2,
-        "done": false
-    },
-    {
-        "id": "5",
-        "text": "TaskEditandDelete",
-        "priority": 2,
-        "done": false
-    },
-    {
-        "id": "5",
-        "text": "TestPrioirtyDefault",
-        "priority": "",
-        "done": false
-    },
-    {
-        "id": "6",
-        "text": "TestPrioirtyDefault",
-        "priority": "",
-        "done": false
-    },
-    {
-        "id": "7",
-        "text": "TestPrioirtyDefault",
-        "priority": "",
-        "done": false
-    },
-    {
-        "id": "8",
-        "text": "TestPrioirtyDefault",
-        "priority": "",
-        "done": false
-    },
-    {
-        "id": "9",
-        "text": "TestPrioirtyDefault",
-        "priority": "",
-        "done": false
-    },
-    {
-        "id": "10",
-        "text": "TestPrioirtyDefault",
-        "priority": "",
-        "done": false
-    },
-    {
-        "id": "11",
-        "text": "TestPrioirtyDefault",
-        "priority": "",
+        "text": "TestPOST",
+        "priority": 3,
         "done": false
     }
 ]

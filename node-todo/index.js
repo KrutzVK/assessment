@@ -51,7 +51,7 @@ app.post('/todos', (req, res) => {
         }
     });
 
-    res.send(todo);
+    res.status(201).send(todo);
 });
 
 //GET - find specific task data
@@ -102,7 +102,7 @@ app.put('/todos/:id', (req, res) => {
             console.log(err.message);
             return
         }
-        res.send(todo);
+        res.status(200).send(todo);
     });
 
 
@@ -142,4 +142,4 @@ function validate(todo) {
 
 //PORT
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+module.exports = app.listen(port, () => console.log(`Listening on port ${port}`));
